@@ -1,7 +1,5 @@
 package at.thammerer.herbarium.spring;
 
-import com.rise.spring.boot.JaxbConfigurationAdapter;
-import com.rise.spring.boot.SpringServiceApplication;
 import org.springframework.boot.actuate.autoconfigure.ManagementSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;

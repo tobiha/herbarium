@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+		<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>
+		<property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{yyyy-MM-dd'T'HH:mm:ss.SSS} [%-5level] [%-15.15thread] [%-30.30logger{29}] [%X{method}] [%X{main_trx_id}] [%X{sub_trx_id}] [%marker] %msg%n%wex}"/>
+		<property name="AUDIT_FILE_LOG_PATTERN" value="${AUDIT_FILE_LOG_PATTERN:-%d{yyyy-MM-dd'T'HH:mm:ss.SSS} [%-5level] [%X{main_trx_id}] [%X{sub_trx_id}] [%marker] %msg%n%wex}"/>
+		<property name="LOG_FILE_MAX_HISTORY" value="${LOG_FILE_MAX_HISTORY:-30}" />
+
+		<conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+
+		<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+			<encoder>
+				<pattern>${FILE_LOG_PATTERN}</pattern>
+			</encoder>
+		</appender>
+
+		<appender name="CYCLIC" class="ch.qos.logback.core.read.CyclicBufferAppender">
+			<MaxSize>512</MaxSize>
+		</appender>
+
+		<appender name="DEBUG_LEVEL_REMAPPER" class="org.springframework.boot.logging.logback.LevelRemappingAppender">
+			<destinationLogger>org.springframework.boot</destinationLogger>
+		</appender>
+
+		<logger name="org.hibernate.validator.internal.util.Version" level="WARN"/>
+		<logger name="org.apache.coyote.http11.Http11NioProtocol" level="WARN"/>
+		<logger name="org.crsh.plugin" level="WARN"/>
+		<logger name="org.apache.tomcat.util.net.NioSelectorPool" level="WARN"/>
+		<logger name="org.apache.catalina.startup.DigesterFactory" level="ERROR"/>
+		<logger name="org.thymeleaf" additivity="false">
+			<appender-ref ref="DEBUG_LEVEL_REMAPPER"/>
+		</logger>
+
+		<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<encoder>
+				<pattern>${FILE_LOG_PATTERN}</pattern>
+			</encoder>
+			<file>${LOG_FILE}</file>
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+				<maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+			</rollingPolicy>
+		</appender>
+
+		<appender name="FILE_IO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<encoder>
+				<pattern>${FILE_LOG_PATTERN}</pattern>
+			</encoder>
+			<file>${LOG_FILE}-io.log</file>
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<fileNamePattern>${LOG_FILE}-io.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+				<maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+			</rollingPolicy>
+		</appender>
+
+
+		<root level="INFO">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="FILE" />
+			<appender-ref ref="CYCLIC" />
+		</root>
+
+		<logger name="com.googlecode.jsonrpc4j.JsonRpcServer" level="DEBUG" additivity="false">
+			<appender-ref ref="FILE_IO"/>
+		</logger>
+		<logger name="com.googlecode.jsonrpc4j.JsonRpcClient" level="DEBUG" additivity="false">
+			<appender-ref ref="FILE_IO"/>
+		</logger>
+
+
+</configuration>

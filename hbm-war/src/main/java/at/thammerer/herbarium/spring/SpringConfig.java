@@ -24,7 +24,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 @ComponentScan({"com.rise.psa.bsm"})
-@ImportResource("classpath:context-bsm-tx.xml")
+@ImportResource("classpath:context-hbm.xml")
 @EnableConfigurationProperties(JpaProperties.class)
 @EnableAsync
 @EnableScheduling

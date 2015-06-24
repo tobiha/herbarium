@@ -33,6 +33,11 @@
 			<artifactId>hbm-db</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>at.thammerer.herbarium</groupId>
+			<artifactId>hbm-api</artifactId>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.maven</groupId>

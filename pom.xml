@@ -30,6 +30,7 @@
 		<module>hbm-model</module>
 		<module>hbm-db</module>
 		<module>hbm-service</module>
+		<module>hbm-api</module>
 	</modules>
 
 

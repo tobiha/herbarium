@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/hbm-api/hbm-api.iml" filepath="$PROJECT_DIR$/hbm-api/hbm-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/hbm-bom/hbm-bom.iml" filepath="$PROJECT_DIR$/hbm-bom/hbm-bom.iml" />
       <module fileurl="file://$PROJECT_DIR$/hbm-db/hbm-db.iml" filepath="$PROJECT_DIR$/hbm-db/hbm-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/hbm-model/hbm-model.iml" filepath="$PROJECT_DIR$/hbm-model/hbm-model.iml" />
