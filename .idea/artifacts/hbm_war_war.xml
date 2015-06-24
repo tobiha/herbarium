@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hbm-war:war">
+    <output-path>$PROJECT_DIR$/hbm-war/target</output-path>
+    <root id="archive" name="herbarium.war">
+      <element id="artifact" artifact-name="hbm-war:war exploded" />
+    </root>
+  </artifact>
+</component>

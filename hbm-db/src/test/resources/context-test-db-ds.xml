@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+			 xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+	<jdbc:embedded-database id="dataSource" type="H2">
+		<jdbc:script location="classpath:createTestSchemas.sql"/>
+	</jdbc:embedded-database>
+
+
+	<!--Entity Manager -->
+	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="bsm-unit"/>
+		<property name="packagesToScan" value="com.thammerer.herbarium"/>
+		<!-- override data source -->
+		<property name="dataSource" ref="dataSource"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect"> org.hibernate.dialect.H2Dialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+
+				<prop key="hibernate.jdbc.fetch_size">100</prop>
+				<prop key="hibernate.jdbc.batch_size">10</prop>
+				<prop key="hibernate.default_batch_fetch_size">8</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

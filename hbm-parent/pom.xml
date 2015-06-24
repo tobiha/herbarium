@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>hbm</artifactId>
+		<groupId>at.thammerer.herbarium</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>hbm-parent</artifactId>
+	<packaging>pom</packaging>
+
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<mvn.dependencyplugin.version>2.8</mvn.dependencyplugin.version>
+		<mvn.jarplugin.version>2.4</mvn.jarplugin.version>
+		<mvn.compilerplugin.version>3.1</mvn.compilerplugin.version>
+		<mvn.buildnumberplugin.version>1.1</mvn.buildnumberplugin.version>
+		<mvn.gitdescribeplugin.version>2.0</mvn.gitdescribeplugin.version>
+		<mvn.warplugin.version>2.4</mvn.warplugin.version>
+		<mvn.srcplugin.version>2.2.1</mvn.srcplugin.version>
+		<mvn.hibernateplugin.version>1.0.3</mvn.hibernateplugin.version>
+		<mvn.resourcesplugin.version>2.6</mvn.resourcesplugin.version>
+		<maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
+
+		<postgresql.version>9.3-1101-jdbc41</postgresql.version>
+	</properties>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${mvn.dependencyplugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>${mvn.buildnumberplugin.version}</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.lukegb.mojo</groupId>
+				<artifactId>gitdescribe-maven-plugin</artifactId>
+				<version>${mvn.gitdescribeplugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>gitdescribe</goal>
+						</goals>
+						<id>git-describe</id>
+						<phase>initialize</phase>
+						<configuration>
+							<extraArguments>
+								<argument>--match</argument>
+								<argument>hbm-*</argument>
+								<argument>--dirty</argument>
+								<argument>--always</argument>
+							</extraArguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${mvn.jarplugin.version}</version>
+				<configuration>
+					<archive>
+						<index>true</index>
+						<manifestEntries>
+							<Version>${describe}</Version>
+							<project-version>${buildNumber}</project-version>
+							<git-revision>${buildNumber}</git-revision>
+							<git-describe>${describe}</git-describe>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${mvn.warplugin.version}</version>
+				<configuration>
+					<archive>
+						<index>true</index>
+						<manifestEntries>
+							<Version>${describe}</Version>
+							<project-version>${project.version}</project-version>
+							<git-revision>${buildNumber}</git-revision>
+							<git-describe>${describe}</git-describe>
+						</manifestEntries>
+					</archive>
+					<attachClasses>true</attachClasses>
+					<classesClassifier>classes</classesClassifier>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${mvn.compilerplugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${mvn.srcplugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>de.juplo</groupId>
+				<artifactId>hibernate4-maven-plugin</artifactId>
+				<version>${mvn.hibernateplugin.version}</version>
+				<configuration>
+					<outputFile>${project.build.directory}/schema.sql</outputFile>
+					<format>true</format>
+					<target>SCRIPT</target>
+					<type>BOTH</type>
+					<hibernateDialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernateDialect>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

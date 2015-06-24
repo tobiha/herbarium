@@ -1,0 +1,24 @@
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSS} [%-15thread] [%.-1level] [%-30.-30logger{20}] - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="CYCLIC" class="ch.qos.logback.core.read.CyclicBufferAppender">
+		<MaxSize>512</MaxSize>
+	</appender>
+
+	<logger name="com.rise" level="DEBUG"/>
+	<logger name="org.hibernate" level="INFO"/>
+	<logger name="com.googlecode.jsonrpc4j" level="TRACE"/>
+	<!--<logger name="org.springframework.transaction.interceptor" level="trace"/>-->
+	<!--<logger name="log4j.logger.org.springframework.orm.jpa" level="debug"/>-->
+	<!--<logger name="log4j.logger.org.springframework.transaction" level="debug"/>-->
+
+	<logger name="org.dbunit.dataset.AbstractTableMetaData" level="ERROR"/>
+
+	<root level="WARN">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="CYCLIC"/>
+	</root>
+</configuration>

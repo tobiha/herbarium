@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hbm-bom/hbm-bom.iml" filepath="$PROJECT_DIR$/hbm-bom/hbm-bom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hbm-db/hbm-db.iml" filepath="$PROJECT_DIR$/hbm-db/hbm-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hbm-model/hbm-model.iml" filepath="$PROJECT_DIR$/hbm-model/hbm-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hbm-parent/hbm-parent.iml" filepath="$PROJECT_DIR$/hbm-parent/hbm-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hbm-service/hbm-service.iml" filepath="$PROJECT_DIR$/hbm-service/hbm-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hbm-war/hbm-war.iml" filepath="$PROJECT_DIR$/hbm-war/hbm-war.iml" />
+      <module fileurl="file://$PROJECT_DIR$/herbarium.iml" filepath="$PROJECT_DIR$/herbarium.iml" />
+    </modules>
+  </component>
+</project>
+
