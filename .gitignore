@@ -1,0 +1,12 @@
+*.iml
+.idea
+target/
+.project
+.settings
+.classpath
+.project
+bin/
+.xml
+dependency-reduced-pom.xml
+nb-configuration.xml
+scripts/
