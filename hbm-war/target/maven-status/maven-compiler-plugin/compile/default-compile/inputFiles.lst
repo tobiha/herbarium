@@ -2,6 +2,9 @@
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/SystemInformation.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/SpringServiceApplication.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/JsonRpcController.java
+/home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/security/CsrfHeaderFilter.java
+/home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/configuration/SecurityConfiguration.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/ServletInitializer.java
-/home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/SpringConfig.java
+/home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/security/SecurityUserDetailsService.java
+/home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/configuration/SpringConfig.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/util/DateAsISO8601StringObjectMapper.java
