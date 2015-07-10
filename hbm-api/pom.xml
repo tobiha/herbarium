@@ -3,13 +3,36 @@
 				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
-		<artifactId>hbm</artifactId>
+		<artifactId>hbm-parent</artifactId>
 		<groupId>at.thammerer.herbarium</groupId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../hbm-parent/pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>hbm-api</artifactId>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>at.thammerer.herbarium</groupId>
+				<artifactId>hbm-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+      		</dependency>
+	</dependencies>
+
+
 
 
 </project>

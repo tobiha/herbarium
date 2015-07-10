@@ -1,5 +1,7 @@
 package at.thammerer.herbarium.spring;
 
+import at.thammerer.herbarium.spring.configuration.SecurityConfiguration;
+import at.thammerer.herbarium.spring.configuration.SpringConfig;
 import org.springframework.boot.actuate.autoconfigure.ManagementSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
@@ -13,8 +15,8 @@ import org.springframework.context.annotation.Import;
 @EnableAutoConfiguration(exclude = {
 	LiquibaseAutoConfiguration.class,
 	HibernateJpaAutoConfiguration.class,
-	SecurityAutoConfiguration.class, ManagementSecurityAutoConfiguration.class})
-@Import(SpringConfig.class)
+	ManagementSecurityAutoConfiguration.class})
+@Import({SpringConfig.class, SecurityConfiguration.class})
 public class ServletInitializer extends SpringBootServletInitializer {
 	public ServletInitializer() {
 	}

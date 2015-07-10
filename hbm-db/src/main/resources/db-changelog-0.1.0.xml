@@ -5,6 +5,27 @@
 									 xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 	
-	
+	<changeSet id="20150710-1407" author="thammerer">
+		<createTable tableName="user">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" primaryKeyName="user_pk" nullable="false"/>
+			</column>
+			<column name="uuid" type="text">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="version" type="bigint"/>
+			<column name="username" type="text">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="password_digest" type="text">
+				<constraints nullable="false"/>
+			</column>
+			<column name="email" type="text"/>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="20150710-1449" author="thammerer">
+		<createSequence sequenceName="hibernate_sequence"/>
+	</changeSet>
 
 </databaseChangeLog>

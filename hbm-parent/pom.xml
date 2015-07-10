@@ -32,7 +32,18 @@
 	</properties>
 
 
+
 	<build>
+
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>${project.build.directory}/generated-resources</directory>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -159,6 +170,13 @@
 					<hibernateDialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernateDialect>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+
 		</plugins>
 	</build>
 

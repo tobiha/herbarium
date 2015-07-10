@@ -1,6 +1,9 @@
 package at.thammerer.herbarium.dao;
 
+
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,21 +11,50 @@ import java.util.List;
  * @author thammerer
  * @param <T>
  */
-public interface BaseDao<T> {
+public class BaseDao<T>  {
 
-	public T findById(Class<T> entityClass, Serializable id);
+	@PersistenceContext
+	protected EntityManager em;
 
-	public T merge(T entity);
+	public T findById(Class<T> entityClass, Serializable id) {
+		T instance = em.find(entityClass, id);
+		return instance;
+	}
 
-	public void persist(T entity);
+	public T merge(T entity) {
+		T result = em.merge(entity);
+		return result;
+	}
 
-	public void remove(T entity);
+	public void persist(T entity) {
+		em.persist(entity);
+	}
 
-	void refresh(T entity);
+	public void remove(T entity) {
+		em.remove(entity);
+	}
 
-	public List<T> findAll(Class<T> entityClass);
+	public void refresh(T entity) {
+		em.refresh(entity);
+	}
 
-	public List<T> findAll(Class<T> entityClass, int maxRecords);
+	public List<T> findAll(Class<T> entityClass) {
+		TypedQuery<T> query = em.createQuery("SELECT t FROM " + entityClass.getName() + " t", entityClass);
+		return query.getResultList();
+	}
 
-	EntityManager getEntityManager();
+	public List<T> findAll(Class<T> entityClass, int maxRecords) {
+		if (maxRecords <= 0) {
+			return findAll(entityClass);
+		} else {
+			TypedQuery<T> query = em.createQuery("SELECT t FROM " + entityClass.getName() + " t", entityClass);
+			query.setMaxResults(maxRecords);
+			return query.getResultList();
+		}
+	}
+
+	public EntityManager getEntityManager(){
+		return em;
+	}
+
 }

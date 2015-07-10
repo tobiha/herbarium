@@ -74,6 +74,7 @@ public class SpringServiceApplication extends SpringApplication {
 		}
 	}
 
+
 	@SuppressWarnings("unused")
 	public static void configureWebApp(SpringApplicationBuilder springApplicationBuilder) {
 		configure(springApplicationBuilder);

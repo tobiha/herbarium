@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Controller
+//@Controller
 public class JsonRpcController {
-	@Autowired
-	@Qualifier("bsmTxServiceExport")
-	JsonServiceExporter bsmTxServiceExport;
-
-
-	@RequestMapping(value = "/json/txService", method = RequestMethod.POST)
-	public void bsmTxServicePost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		bsmTxServiceExport.handleRequest(request, response);
-	}
+//	@Autowired
+//	@Qualifier("bsmTxServiceExport")
+//	JsonServiceExporter bsmTxServiceExport;
+//
+//
+//	@RequestMapping(value = "/json/txService", method = RequestMethod.POST)
+//	public void bsmTxServicePost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//		bsmTxServiceExport.handleRequest(request, response);
+//	}
 
 
 }

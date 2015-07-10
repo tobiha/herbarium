@@ -1,9 +1,10 @@
-package at.thammerer.herbarium.spring;
+package at.thammerer.herbarium.spring.configuration;
 
 import at.thammerer.herbarium.util.DateAsISO8601StringObjectMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import liquibase.integration.spring.SpringLiquibase;
 import org.apache.tomcat.jdbc.pool.DataSource;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -11,23 +12,26 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.persistence.EntityManagerFactory;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import java.util.Arrays;
+import java.util.List;
 
-@ComponentScan({"com.rise.psa.bsm"})
-@ImportResource("classpath:context-hbm.xml")
+@ComponentScan({"at.thammerer.herbarium"})
 @EnableConfigurationProperties(JpaProperties.class)
-@EnableAsync
-@EnableScheduling
+@EnableTransactionManagement(proxyTargetClass = true)
+@EnableAspectJAutoProxy
 public class SpringConfig {
 
 	// emf for bsm_data
@@ -50,6 +54,18 @@ public class SpringConfig {
 	@Bean(name = "transactionManager")
 	public JpaTransactionManager transactionManager(@Qualifier("entityManagerFactory") EntityManagerFactory emf) {
 		return new JpaTransactionManager(emf);
+	}
+
+	@Bean(name = "org.dozer.Mapper")
+	public DozerBeanMapper dozerBean() {
+		List<String> mappingFiles = Arrays.asList(
+			"dozer-global-configuration.xml",
+			"dozer-bean-mappings.xml"
+		);
+
+		DozerBeanMapper dozerBean = new DozerBeanMapper();
+		dozerBean.setMappingFiles(mappingFiles);
+		return dozerBean;
 	}
 
 

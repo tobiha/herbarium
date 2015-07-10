@@ -6,14 +6,13 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
 	<jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="classpath:createTestSchemas.sql"/>
 	</jdbc:embedded-database>
 
 
 	<!--Entity Manager -->
 	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="bsm-unit"/>
-		<property name="packagesToScan" value="com.thammerer.herbarium"/>
+		<property name="packagesToScan" value="at.thammerer.herbarium"/>
 		<!-- override data source -->
 		<property name="dataSource" ref="dataSource"/>
 		<property name="jpaVendorAdapter">
