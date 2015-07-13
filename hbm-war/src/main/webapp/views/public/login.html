@@ -1,0 +1,24 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div ng-controller="loginCtrl">
+        <!--<div>-->
+            <!--<h1 class="logo-name">IN+</h1>-->
+        <!--</div>-->
+        <h3>Welcome to Herbarium OAK</h3>
+        <p>The Crete Herbarium with over 6000 entries.
+        </p>
+        <p>Login in. To see it in action.</p>
+        <div class="alert alert-danger" ng-show="error">
+            There was a problem logging in. Please try again.
+        </div>
+        <form class="m-t" role="form" ng-submit="login()">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" required="" ng-model="credentials.username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required="" ng-model="credentials.password">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+        </form>
+    </div>
+</div>

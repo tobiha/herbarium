@@ -3,9 +3,7 @@ package at.thammerer.herbarium.spring.configuration;
 import at.thammerer.herbarium.spring.security.CsrfHeaderFilter;
 import at.thammerer.herbarium.spring.security.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -43,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.httpBasic().and()
 			.authorizeRequests()
-			.antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll().anyRequest()
+			.antMatchers("/index.html", "/views/public/**", "/css/**", "/font-awesome/**","/fonts/**", "/js/**", "/").permitAll().anyRequest()
 			.authenticated().and()
 			.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
 			.csrf().csrfTokenRepository(csrfTokenRepository());
