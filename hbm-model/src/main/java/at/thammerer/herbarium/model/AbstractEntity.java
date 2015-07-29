@@ -6,8 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -31,9 +35,24 @@ public class AbstractEntity {
     @Column(name = "uuid")
     private String uuidStr;
 
+    @Column
+		@Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
+    @Column(name = "last_modified")
+		@Temporal(TemporalType.TIMESTAMP)
+    private Date lastModified;
+
     @PrePersist
     protected void prePersist() {
         syncUuidString();
+        this.created = new Date();
+        this.lastModified = new Date();
+    }
+
+    @PreUpdate
+    protected void preUpdate(){
+        this.lastModified = new Date();
     }
 
     protected void syncUuidString() {
@@ -93,6 +112,14 @@ public class AbstractEntity {
 
     public String getUuidStr() {
         return uuidStr;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public Date getLastModified() {
+        return lastModified;
     }
 }
 

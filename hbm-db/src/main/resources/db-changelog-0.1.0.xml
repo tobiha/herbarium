@@ -28,4 +28,73 @@
 		<createSequence sequenceName="hibernate_sequence"/>
 	</changeSet>
 
+	<changeSet id="20150715-1200" author="thammerer">
+		<addColumn tableName="user">
+			<column name="created" type="timestamp"/>
+			<column name="last_modified" type="timestamp"/>
+		</addColumn>
+	</changeSet>
+
+
+	<changeSet id="20150715-1201" author="thammerer">
+		<createTable tableName="geo_location">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" primaryKeyName="geo_location_pk" nullable="false"/>
+			</column>
+			<column name="uuid" type="text">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="version" type="bigint"/>
+			<column name="created" type="timestamp"/>
+			<column name="last_modified" type="timestamp"/>
+			<column name="lat" type="decimal(9,6)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="lng" type="decimal(9,6)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+
+
+		<createTable tableName="herbarium_sheet">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" primaryKeyName="herbarium_sheet_pk" nullable="false"/>
+			</column>
+			<column name="uuid" type="text">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="version" type="bigint"/>
+			<column name="created" type="timestamp"/>
+			<column name="last_modified" type="timestamp"/>
+			<column name="number" type="bigint">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="scientific_name" type="text">
+				<constraints nullable="false"/>
+			</column>
+			<column name="family" type="text"/>
+			<column name="sub_species" type="text"/>
+			<column name="collection_date" type="date"/>
+			<column name="collector" type="text"/>
+			<column name="location_description" type="text"/>
+			<column name="altitude" type="text"/>
+			<column name="exposition" type="text"/>
+			<column name="habitat_information" type="text"/>
+			<column name="annotations" type="text"/>
+			<column name="storage_location" type="text"/>
+			<column name="geo_location_id" type="bigint"/>
+		</createTable>
+
+		<addForeignKeyConstraint baseTableName="herbarium_sheet" baseColumnNames="geo_location_id" constraintName="hbm_geo_location_fk" referencedTableName="geo_location"
+														 referencedColumnNames="id"/>
+
+	</changeSet>
+
+
+	<changeSet id="20150715-1226" author="thammerer">
+		<addColumn tableName="herbarium_sheet">
+			<column name="taxon" type="text"/>
+		</addColumn>
+	</changeSet>
+
 </databaseChangeLog>

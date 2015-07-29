@@ -13,12 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -59,7 +56,6 @@ public class SpringConfig {
 	@Bean(name = "org.dozer.Mapper")
 	public DozerBeanMapper dozerBean() {
 		List<String> mappingFiles = Arrays.asList(
-			"dozer-global-configuration.xml",
 			"dozer-bean-mappings.xml"
 		);
 

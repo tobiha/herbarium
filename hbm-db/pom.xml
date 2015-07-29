@@ -33,6 +33,11 @@
 			<artifactId>hbm-model</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>hbm-api</artifactId>
+		</dependency>
+
 		<!-- aspectj -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

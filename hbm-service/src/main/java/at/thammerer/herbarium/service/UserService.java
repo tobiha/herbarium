@@ -12,10 +12,7 @@ import javax.inject.Inject;
 import java.util.regex.Pattern;
 
 import static at.thammerer.herbarium.service.ValidationUtils.assertMatches;
-import static at.thammerer.herbarium.service.ValidationUtils.assertMatches;
 import static at.thammerer.herbarium.service.ValidationUtils.assertMinimumLength;
-import static at.thammerer.herbarium.service.ValidationUtils.assertNotBlank;
-import static at.thammerer.herbarium.service.ValidationUtils.assertNotBlank;
 import static at.thammerer.herbarium.service.ValidationUtils.assertNotBlank;
 
 

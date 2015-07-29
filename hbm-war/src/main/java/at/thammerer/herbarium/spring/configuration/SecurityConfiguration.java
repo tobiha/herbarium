@@ -41,10 +41,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.httpBasic().and()
 			.authorizeRequests()
-			.antMatchers("/index.html", "/views/public/**", "/css/**", "/font-awesome/**","/fonts/**", "/js/**", "/").permitAll().anyRequest()
-			.authenticated().and()
-			.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-			.csrf().csrfTokenRepository(csrfTokenRepository());
+			.antMatchers("/**", "/index.html", "/views/public/**", "/css/**", "/font-awesome/**","/fonts/**", "/js/**", "/").permitAll().anyRequest()
+			.authenticated()
+			.and()
+//			.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
+//			.csrf().csrfTokenRepository(csrfTokenRepository());
+		.csrf().disable();
 	}
 
 	private CsrfTokenRepository csrfTokenRepository() {

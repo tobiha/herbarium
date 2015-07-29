@@ -8,47 +8,36 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a ui-sref="layouts" href="#" > Back to main Layout page </a>
+                <li ui-sref-active="active">
+                    <a ui-sref="index.main" > Home </a>
 
                 </li>
-                <li class="dropdown" dropdown>
-                    <a class="dropdown-toggle" href dropdown-toggle> Menu item <span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown" dropdown>
-                    <a class="dropdown-toggle" href dropdown-toggle> Menu item <span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown" dropdown>
-                    <a class="dropdown-toggle" href dropdown-toggle> Menu item <span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown" dropdown>
-                    <a class="dropdown-toggle" href dropdown-toggle> Menu item <span class="caret"></span></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                        <li><a href="#">Menu item</a></li>
-                    </ul>
+
+                <li ui-sref-active="active" ng-show="authenticated">
+                    <a ui-sref="index.collection" > Collection </a>
+
                 </li>
 
+                <li ui-sref-active="active" ng-show="authenticated">
+                    <a ui-sref="index.details" > Details </a>
+
+                </li>
+
+                <li ui-sref-active="active" ng-show="authenticated">
+                    <a ui-sref="index.map" > Map </a>
+
+                </li>
+
+                <li >
+                    <a  > Team </a>
+                </li>
+                <li >
+                    <a > Contact </a>
+                </li>
+
+                <li >
+                    <a > Projects </a>
+                </li>
 
 
             </ul>

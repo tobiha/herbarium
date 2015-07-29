@@ -1,7 +1,6 @@
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/liquibase/ext/logging/LiquibaseLogger.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/SystemInformation.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/SpringServiceApplication.java
-/home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/JsonRpcController.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/security/CsrfHeaderFilter.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/configuration/SecurityConfiguration.java
 /home/tobi/Projects/herbarium/hbm-war/src/main/java/at/thammerer/herbarium/spring/ServletInitializer.java

@@ -1,8 +1,8 @@
 package at.thammerer.herbarium.controller;
 
 
-import at.thammerer.herbarium.dto.NewUserDTO;
-import at.thammerer.herbarium.dto.UserInfoDTO;
+import at.thammerer.herbarium.api.dto.NewUserDTO;
+import at.thammerer.herbarium.api.dto.UserInfoDTO;
 import at.thammerer.herbarium.model.User;
 import at.thammerer.herbarium.service.UserService;
 import org.apache.log4j.Logger;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import java.security.Principal;

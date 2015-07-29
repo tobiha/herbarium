@@ -1,4 +1,4 @@
-package at.thammerer.herbarium.dto;
+package at.thammerer.herbarium.api.dto;
 
 /**
  *
