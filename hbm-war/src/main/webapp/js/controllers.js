@@ -173,8 +173,9 @@ function searchCtrl($scope, $state, SearchService) {
 
 };
 
-function detailsController($scope, $stateParams, SearchService) {
+function detailsController($scope, $stateParams, $state, SearchService, SheetService) {
 	$scope.sheet = $stateParams.sheet;
+	$scope.dirtySheet = angular.copy($scope.sheet);
 
 	$scope.findByNr = function(){
 
@@ -183,14 +184,34 @@ function detailsController($scope, $stateParams, SearchService) {
 		}
 	};
 
+	$scope.updateSheet = function(){
+
+		SheetService.saveOrUpdateSheet($scope.dirtySheet).then(function(){
+				console.log("updated sheet with id: " + $scope.sheet.id);
+				angular.copy($scope.dirtySheet, $scope.sheet);
+				$state.go("index.details.view", $scope.sheet);
+			},
+			function (errorMessage) {
+				//TODO show error
+				console.log("error occured" + errorMessage);
+			}
+		)
+	};
+
+	$scope.reset = function(){
+		angular.copy($scope.sheet, $scope.dirtySheet);
+	};
+
 
 	function loadSheet(number) {
 		SearchService.getSheetByNr(number)
 			.then(function (data) {
 				$scope.sheet = data;
+				$scope.dirtySheet = angular.copy($scope.sheet);
 				console.log("successfully loaded sheet:" + $scope.sheet.number);
 			},
 			function (errorMessage) {
+				//TODO show error
 				console.log("error occured" + errorMessage);
 			}
 		);

@@ -1,0 +1,151 @@
+
+                <div class="row m-b-sm">
+                    <div class="col-md-12">
+                        <h3>General Information</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label>Scientific Name</label>
+
+                        <div class=""><p class=""><em>{{sheet.scientificName}}</em></p></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Herbar #:</label>
+
+                        <div><p>{{sheet.number}}</p></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Family</label>
+
+                        <div class=""><p class="">{{sheet.family || "-"}}</p></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Collection Date</label>
+
+                        <div><p>{{(sheet.collectionDate | date : 'd. MMMM y') || "-"}}</p></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Sub Species</label>
+
+                        <div><p>{{sheet.subSpecies || "-"}}</p></div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>Collector</label>
+
+                        <div><p>{{sheet.collector || "-"}}</p></div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="row m-t-md m-b-sm">
+                    <div class="col-md-12">
+                        <h3>Location Information</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">Altitude</label>
+
+                                <div class=""><p>{{sheet.altitude || "-"}}</p></div>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Exposition</label>
+
+                                <div class=""><p>{{sheet.exposition || "-"}}</p></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Location Description</label>
+
+                                <div class=""><p>{{sheet.locationDescription || "-"}}</p></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Habitat Information</label>
+
+                                <div class=""><p>{{sheet.habitatInformation || "-"}}</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 ">
+                        <section id="map" ng-controller="GoogleMaps">
+                            <div ui-map="myMap" ui-options="mapOptions" class="google-map"></div>
+                        </section>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+
+                <div class="row m-t-md m-b-sm">
+                    <div class="col-md-12">
+                        <h3>Images</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="lightBoxGallery">
+                            <a href="img/gallery/1.jpg" title="Image from Unsplash" data-gallery=""><img
+                                    src="img/gallery/1s.jpg"></a>
+                            <a href="img/gallery/2.jpg" title="Image from Unsplash" data-gallery=""><img
+                                    src="img/gallery/2s.jpg"></a>
+                            <a href="img/gallery/3.jpg" title="Image from Unsplash" data-gallery=""><img
+                                    src="img/gallery/3s.jpg"></a>
+
+                            <div id="blueimp-gallery" class="blueimp-gallery">
+                                <div class="slides"></div>
+                                <h3 class="title"></h3>
+                                <a class="prev">‹</a>
+                                <a class="next">›</a>
+                                <a class="close">×</a>
+                                <a class="play-pause"></a>
+                                <ol class="indicator"></ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hr-line-dashed"></div>
+
+                <div class="row m-t-md m-b-sm">
+                    <div class="col-md-12">
+                        <h3>Miscellaneous</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Annotations</label>
+
+                        <div class=""><p>{{sheet.annotations || "-"}}</p></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Storage Location</label>
+
+                        <div class=""><p>{{sheet.storageLocation || "-"}}</p></div>
+                    </div>
+                </div>
+
+
+<style>
+    /* Local style for demo purpose */
+
+    /*.lightBoxGallery {*/
+    /*text-align: center;*/
+    /*}*/
+
+    .lightBoxGallery img {
+        margin: 5px;
+    }
+
+</style>

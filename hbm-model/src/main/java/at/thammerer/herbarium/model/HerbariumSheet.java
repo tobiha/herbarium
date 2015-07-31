@@ -119,6 +119,7 @@ public class HerbariumSheet extends AbstractEntity{
 
 	public void setLocation(GeoLocation location) {
 		this.location = location;
+//		location.setHerbariumSheet(this);
 	}
 
 	public String getLocationDescription() {
@@ -195,6 +196,7 @@ public class HerbariumSheet extends AbstractEntity{
 		this.subSpecies = updated.getSubSpecies();
 		this.collectionDate = updated.getCollectionDate();
 		this.collector = updated.getCollector();
+		this.location = updated.getLocation();
 		this.locationDescription = updated.getLocationDescription();
 		this.altitude = updated.getAltitude();
 		this.exposition = updated.getExposition();

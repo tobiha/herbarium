@@ -76,7 +76,7 @@
                             <td>{{sheet.subSpecies}}</td>
                             <td>{{sheet.family}}</td>
                             <td>{{sheet.collectionDate | date : 'd. MMMM y'}}</td>
-                            <td><a ui-sref="index.details({sheet: sheet})">Show Sheet</a></td>
+                            <td><a ui-sref="index.details.view({sheet: sheet})">Show Sheet</a></td>
                         </tr>
                         <tr ng-if="sheet.showDetails" ng-repeat-end="">
                             <td colspan="5">

@@ -6,7 +6,22 @@
 
 	<configuration>
 
+
 	</configuration>
+
+	<mapping>
+		<class-a>at.thammerer.herbarium.api.dto.SheetDto</class-a>
+		<class-b>at.thammerer.herbarium.model.HerbariumSheet</class-b>
+		<field>
+			<a>location</a>
+			<b>location</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>at.thammerer.herbarium.api.dto.GeoLocationDto</class-a>
+		<class-b>at.thammerer.herbarium.model.GeoLocation</class-b>
+	</mapping>
 
 </mappings>
 

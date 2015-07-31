@@ -47,7 +47,13 @@ public class SheetDao {
 	}
 
 	public HerbariumSheet saveOrUpdate(HerbariumSheet sheet){
+//		saveOrUpdateLocation(sheet);
+		//TODO version problems
 		return em.merge(sheet);
+	}
+
+	private void saveOrUpdateLocation(HerbariumSheet sheet) {
+		 em.persist(sheet.getLocation());
 	}
 
 	public ResultsWithInfo<HerbariumSheet> getPagedHerbariumSheets(int recordsPerPage, int index, HerbariumSheetFilterDto filter){

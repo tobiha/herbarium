@@ -12,7 +12,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $httpPr
 
     $ocLazyLoadProvider.config({
         // Set to true if you want to see what and when is dynamically loaded
-        debug: false
+        debug: true
     });
 
     $stateProvider
@@ -34,11 +34,20 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $httpPr
       })
       .state('index.details', {
         url: "/details",
+        abstract: true,
         templateUrl: "views/sheet_details.html",
         params: {
           sheet: null
-        },
+        }
+
+      })
+      .state('index.details.view', {
+        url: "/view",
+        templateUrl: "views/sheet_details_view.html",
         data: {pageTitle: 'Details'},
+        params: {
+          sheet: null
+        },
         resolve: {
           loadPlugin: function ($ocLazyLoad) {
             return $ocLazyLoad.load([
@@ -56,6 +65,25 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $httpPr
             ]);
           }
         }
+      })
+      .state('index.details.edit', {
+        url: "/edit",
+        templateUrl: "views/sheet_details_edit.html",
+        data: {pageTitle: 'Details - Edit'},
+        params: {
+          sheet: null
+        },
+        resolve: {
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              {
+                name: 'datePicker',
+                files: ['css/plugins/datapicker/angular-datapicker.css', 'js/plugins/datapicker/angular-datepicker.js']
+              }
+            ]);
+          }
+        }
+
       })
       .state('index.collection', {
           url: "/collection",

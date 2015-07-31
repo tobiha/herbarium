@@ -121,5 +121,9 @@ public class AbstractEntity {
     public Date getLastModified() {
         return lastModified;
     }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 }
 

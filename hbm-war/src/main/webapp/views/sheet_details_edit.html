@@ -1,0 +1,162 @@
+<form>
+<div class="row m-b-sm">
+    <div class="col-md-12">
+        <h3>General Information</h3>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Scientific Name</label>
+            <input type="text" class="form-control" placeholder="Scientific Name" ng-model="dirtySheet.scientificName">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label>Herbar #:</label>
+
+        <div><p>{{dirtySheet.number}}</p></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Family</label>
+            <input type="text" class="form-control" placeholder="Family" ng-model="dirtySheet.family">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Collection Date</label>
+            <div class="input-group date">
+                <input type="datetime" class="form-control" date-time ng-model="dirtySheet.collectionDate" view="date" auto-close="true" format="dd.MM.yyyy">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Sub Species</label>
+            <input type="text" class="form-control" placeholder="Sub Species" ng-model="dirtySheet.subSpecies">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Collector</label>
+            <input type="text" class="form-control" placeholder="Collector" ng-model="dirtySheet.collector">
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+<div class="row m-t-md m-b-sm">
+    <div class="col-md-12">
+        <h3>Location Information</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Altitude</label>
+                    <input type="text" class="form-control" placeholder="Altitude" ng-model="dirtySheet.altitude">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Exposition</label>
+                    <input type="text" class="form-control" placeholder="Exposition" ng-model="dirtySheet.exposition">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Longitude</label>
+                    <input type="text" class="form-control" ng-model="dirtySheet.location.lng">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Latitude</label>
+                    <input type="text" class="form-control" ng-model="dirtySheet.location.lat">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Location Description</label>
+                                    <textarea class="form-control" placeholder="Location Description"
+                                              ng-model="dirtySheet.locationDescription">
+                                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Habitat Information</label>
+                                    <textarea class="form-control" placeholder="Habitat Information"
+                                              ng-model="dirtySheet.habitatInformation">
+                                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+
+<div class="row m-t-md m-b-sm">
+    <div class="col-md-12">
+        <h3>Images</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        Image upload
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+
+<div class="row m-t-md m-b-sm">
+    <div class="col-md-12">
+        <h3>Miscellaneous</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Annotations</label>
+                            <textarea class="form-control" placeholder="Annotations" ng-model="dirtySheet.annotations">
+                            </textarea>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Storage Location</label>
+            <input type="text" class="form-control" placeholder="Storage Location" ng-model="dirtySheet.storageLocation">
+        </div>
+    </div>
+</div>
+</form>
+
+
+<style>
+    /* Local style for demo purpose */
+
+    /*.lightBoxGallery {*/
+    /*text-align: center;*/
+    /*}*/
+
+    .lightBoxGallery img {
+        margin: 5px;
+    }
+
+</style>
