@@ -13,8 +13,6 @@ public class HerbariumSheetFilterDto {
 
 	private String family;
 
-	private String taxon;
-
 	private String subSpecies;
 
 	private Date collectionDateFrom;
@@ -59,14 +57,6 @@ public class HerbariumSheetFilterDto {
 
 	public void setFamily(String family) {
 		this.family = family;
-	}
-
-	public String getTaxon() {
-		return taxon;
-	}
-
-	public void setTaxon(String taxon) {
-		this.taxon = taxon;
 	}
 
 	public String getSubSpecies() {

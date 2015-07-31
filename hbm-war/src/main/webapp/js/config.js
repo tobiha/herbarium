@@ -35,6 +35,9 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $httpPr
       .state('index.details', {
         url: "/details",
         templateUrl: "views/sheet_details.html",
+        params: {
+          sheet: null
+        },
         data: {pageTitle: 'Details'},
         resolve: {
           loadPlugin: function ($ocLazyLoad) {

@@ -21,6 +21,21 @@ angular.module('inspinia')
 							deferred.reject('Error retrieving paged sheets');
 						}
 					});
+				return deferred.promise;
+			},
+			getSheetByNr: function(number){
+				var deferred = $q.defer();
+
+				$http.get('/search/sheets/nr/' + number)
+					.then(function (response) {
+						if (response.status == 200) {
+							deferred.resolve(response.data);
+						}
+						else {
+							deferred.reject('Error retrieving sheet by number');
+						}
+					});
+				return deferred.promise;
 			}
 		}
 	}

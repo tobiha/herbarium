@@ -7,6 +7,7 @@ import at.thammerer.herbarium.wrapper.ResultsWithInfo;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -32,6 +33,17 @@ public class SheetDao {
 
 	public HerbariumSheet findById(Long id){
 		return em.find(HerbariumSheet.class, id);
+	}
+
+	public HerbariumSheet findByNumber(Long number){
+		TypedQuery<HerbariumSheet> query = em.createQuery("select s from HerbariumSheet s where s.number = :number", HerbariumSheet.class);
+		query.setParameter("number", number);
+
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	public HerbariumSheet saveOrUpdate(HerbariumSheet sheet){
@@ -84,39 +96,35 @@ public class SheetDao {
 		}
 
 		if (filter.getScientificName() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("scientificName"), "%" + filter.getScientificName() + "%"));
-		}
-
-		if (filter.getTaxon() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("taxon"), "%" + filter.getTaxon() + "%"));
+			predicates.add(cb.like(cb.lower(searchRoot.<String>get("scientificName")), "%" + filter.getScientificName().toLowerCase() + "%"));
 		}
 
 		if (filter.getSubSpecies() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("subSpecies"), "%"+ filter.getSubSpecies() + "%"));
+			predicates.add(cb.like(cb.lower(searchRoot.<String>get("subSpecies")), "%"+ filter.getSubSpecies().toLowerCase() + "%"));
 		}
 
 		if (filter.getCollector() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("collector"), "%"+ filter.getCollector() + "%"));
+			predicates.add(cb.like(cb.lower(searchRoot.<String>get("collector")), "%"+ filter.getCollector().toLowerCase() + "%"));
 		}
 
 		if (filter.getLocationDescription() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("locationDescription"), "%"+ filter.getLocationDescription() + "%"));
+			predicates.add(cb.like(cb.lower(searchRoot.<String>get("locationDescription")), "%"+ filter.getLocationDescription().toLowerCase() + "%"));
 		}
 
 		if (filter.getAltitude() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("altitude"), "%"+ filter.getAltitude() + "%"));
+			predicates.add(cb.like(cb.lower(searchRoot.<String>get("altitude")), "%"+ filter.getAltitude().toLowerCase() + "%"));
 		}
 
 		if (filter.getExposition() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("exposition"), "%"+ filter.getExposition() + "%"));
+			predicates.add(cb.like(cb.lower(searchRoot.<String>get("exposition")), "%"+ filter.getExposition().toLowerCase() + "%"));
 		}
 
 		if (filter.getHabitatInformation() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("habitatInformation"), "%"+ filter.getHabitatInformation() + "%"));
+			predicates.add(cb.like(cb.lower(searchRoot.<String>get("habitatInformation")), "%"+ filter.getHabitatInformation().toLowerCase() + "%"));
 		}
 
 		if (filter.getAnnotations() != null) {
-			predicates.add(cb.like(searchRoot.<String>get("annotations"), "%"+ filter.getAnnotations() + "%"));
+			predicates.add(cb.like(cb.lower(searchRoot.<String>get("annotations")), "%"+ filter.getAnnotations().toLowerCase() + "%"));
 		}
 
 		if (filter.getCollectionDateFrom() != null) {

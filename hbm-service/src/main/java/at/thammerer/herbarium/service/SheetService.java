@@ -66,5 +66,23 @@ public class SheetService {
 		return mapper.map(persisted, SheetDto.class);
 	}
 
+	@Transactional(readOnly = true)
+	public SheetDto findById(Long id){
+		HerbariumSheet sheet = sheetDao.findById(id);
+		if(sheet != null){
+			return mapper.map(sheet, SheetDto.class);
+		}
+		return null;
+	}
+
+	@Transactional(readOnly = true)
+	public SheetDto findByNumber(Long number){
+		HerbariumSheet sheet = sheetDao.findByNumber(number);
+		if(sheet != null){
+			return mapper.map(sheet, SheetDto.class);
+		}
+		return null;
+	}
+
 
 }

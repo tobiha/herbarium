@@ -29,9 +29,6 @@ public class HerbariumSheet extends AbstractEntity{
 	@Column
 	private String family;
 
-	@Column
-	private String taxon;
-
 	@Column(name = "sub_species")
 	private String subSpecies;
 
@@ -90,14 +87,6 @@ public class HerbariumSheet extends AbstractEntity{
 
 	public void setFamily(String family) {
 		this.family = family;
-	}
-
-	public String getTaxon() {
-		return taxon;
-	}
-
-	public void setTaxon(String taxon) {
-		this.taxon = taxon;
 	}
 
 	public String getSubSpecies() {
@@ -187,7 +176,6 @@ public class HerbariumSheet extends AbstractEntity{
 			"number=" + number +
 			", scientificName='" + scientificName + '\'' +
 			", family='" + family + '\'' +
-			", taxon='" + taxon + '\'' +
 			", subSpecies='" + subSpecies + '\'' +
 			", collectionDate=" + collectionDate +
 			", collector='" + collector + '\'' +
@@ -204,7 +192,6 @@ public class HerbariumSheet extends AbstractEntity{
 	public void updateData(HerbariumSheet updated){
 		this.scientificName = updated.getScientificName();
 		this.family = updated.getFamily();
-		this.taxon = updated.getTaxon();
 		this.subSpecies = updated.getSubSpecies();
 		this.collectionDate = updated.getCollectionDate();
 		this.collector = updated.getCollector();

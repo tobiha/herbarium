@@ -171,12 +171,30 @@ function searchCtrl($scope, $state, SearchService) {
 		};
 	}
 
-
-
-
 };
 
-function detailsController($scope) {
+function detailsController($scope, $stateParams, SearchService) {
+	$scope.sheet = $stateParams.sheet;
+
+	$scope.findByNr = function(){
+
+		if($scope.search.number != null){
+			loadSheet($scope.search.number);
+		}
+	};
+
+
+	function loadSheet(number) {
+		SearchService.getSheetByNr(number)
+			.then(function (data) {
+				$scope.sheet = data;
+				console.log("successfully loaded sheet:" + $scope.sheet.number);
+			},
+			function (errorMessage) {
+				console.log("error occured" + errorMessage);
+			}
+		);
+	}
 
 }
 
