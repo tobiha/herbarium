@@ -1,10 +1,13 @@
 package at.thammerer.herbarium.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 
 /**
  * @author thammerer
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SheetDto {
 
 	private Long id;

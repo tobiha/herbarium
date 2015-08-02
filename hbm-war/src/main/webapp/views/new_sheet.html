@@ -1,0 +1,215 @@
+<div class="wrapper wrapper-content animated fadeInRight" >
+
+    <div class="row">
+        <div class="col-md-12 col-lg-offset-2 col-lg-8">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <div class="row">
+                        <div class="col-md-4"><h2>New Herbarium Sheet</h2></div>
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <form name="newSheetForm" novalidate ng-controller="sheetCreationController" ng-submit="saveSheet()">
+                        <div class="row m-b-sm">
+                            <div class="col-md-6">
+                                <h3>General Information</h3>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Scientific Name*</label>
+                                    <input type="text" class="form-control" placeholder="Scientific Name" name="scientificName" ng-focus="focus('scientificName')" ng-blur="blur('scientificName')"
+                                           ng-model="newSheet.scientificName" required>
+                                    <div class="error-messages" ng-show="isMessagesVisible('scientificName') && newSheetForm.scientificName.$error.required" ng-messages="newSheetForm.scientificName.$error"
+                                         ng-cloak>
+                                        <div ng-message="required" class="text-danger">Scientific Name is mandatory</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Herbar #:</label>
+
+                                <div><p>Herbar number will be assigned after sheet has been saved.</p></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Family*</label>
+                                    <input type="text" class="form-control" placeholder="Family" name="family" ng-focus="focus('family')" ng-blur="blur('family')"
+                                           ng-model="newSheet.family" required>
+                                    <div class="error-messages" ng-show="isMessagesVisible('family') && newSheetForm.family.$error.required" ng-messages="newSheetForm.family.$error" role="alert">
+                                        <div ng-message="required" class="text-danger">Family is mandatory</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Collection Date</label>
+
+                                    <div class="input-group date">
+                                        <input type="datetime" class="form-control" date-time
+                                               ng-model="newSheet.collectionDate" view="date" auto-close="true"
+                                               format="dd.MM.yyyy">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Sub Species</label>
+                                    <input type="text" class="form-control" placeholder="Sub Species"
+                                           ng-model="newSheet.subSpecies">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Collector</label>
+                                    <input type="text" class="form-control" placeholder="Collector"
+                                           ng-model="newSheet.collector">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="row m-t-md m-b-sm">
+                            <div class="col-md-12">
+                                <h3>Location Information</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Altitude</label>
+                                            <input type="text" class="form-control" placeholder="Altitude"
+                                                   ng-model="newSheet.altitude">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Exposition</label>
+                                            <input type="text" class="form-control" placeholder="Exposition"
+                                                   ng-model="newSheet.exposition">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Longitude</label>
+                                            <input type="text" class="form-control" placeholder="12.345678" ng-model="newSheet.location.lng" ng-pattern="/^\d{1,3}\.(\d){4,6}$/" name="lng" ng-focus="focus('lng')" ng-blur="blur('lng')">
+                                            <div class="error-messages" ng-show="isMessagesVisible('lng') && newSheetForm.lng.$error.pattern" ng-messages="newSheetForm.lng.$error"
+                                                 ng-cloak>
+                                                <div ng-message="pattern" class="text-danger">Must be a number with 4 to 6 decimal digits. e.g. 12.345678</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Latitude</label>
+                                            <input type="text" class="form-control" placeholder="12.345678" ng-model="newSheet.location.lat" ng-pattern="/^\d{1,3}\.(\d){4,6}$/" name="lat" ng-focus="focus('lat')" ng-blur="blur('lat')">
+                                            <div class="error-messages" ng-show="isMessagesVisible('lat') && newSheetForm.lng.$error.pattern" ng-messages="newSheetForm.lat.$error"
+                                                 ng-cloak>
+                                                <div ng-message="pattern" class="text-danger">Must be a number with 4 to 6 decimal digits. e.g. 12.345678</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Location Description</label>
+                                    <textarea class="form-control" placeholder="Location Description"
+                                              ng-model="newSheet.locationDescription">
+                                    </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Habitat Information</label>
+                                    <textarea class="form-control" placeholder="Habitat Information"
+                                              ng-model="newSheet.habitatInformation">
+                                    </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="row m-t-md m-b-sm">
+                            <div class="col-md-12">
+                                <h3>Images</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Image upload
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="row m-t-md m-b-sm">
+                            <div class="col-md-12">
+                                <h3>Miscellaneous</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Annotations</label>
+                            <textarea class="form-control" placeholder="Annotations" ng-model="newSheet.annotations">
+                            </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Storage Location</label>
+                                    <input type="text" class="form-control" placeholder="Storage Location"
+                                           ng-model="newSheet.storageLocation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="pull-right">
+                                    <button type="submit" ng-disabled="newSheetForm.$invalid" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+                                    <!--<a ui-sref="index.collection">-->
+                                        <!--<button class="btn btn-primary btn-sm" ng-click="reset()"-->
+                                                <!--tooltip-placement="top" tooltip="Cancel"><i class="fa fa-times"></i>-->
+                                        <!--</button>-->
+                                    <!--</a>-->
+
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    /* Local style for demo purpose */
+
+    /*.lightBoxGallery {*/
+    /*text-align: center;*/
+    /*}*/
+
+    .lightBoxGallery img {
+        margin: 5px;
+    }
+
+</style>

@@ -55,7 +55,7 @@ angular.module('inspinia')
 				})
 					.then(function (response) {
 						if (response.status == 200) {
-							deferred.resolve();
+							deferred.resolve(response.data);
 						}
 						else {
 							deferred.reject("Error saving sheet: " + response.data);

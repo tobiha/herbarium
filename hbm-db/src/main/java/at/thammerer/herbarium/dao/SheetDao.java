@@ -46,6 +46,12 @@ public class SheetDao {
 		}
 	}
 
+	public Long getNextHerbariumNumber(){
+		//TODO test and use sequence
+		TypedQuery<Long> query = em.createQuery("select max(s.number) from HerbariumSheet s", Long.class);
+		return query.getSingleResult() + 1l;
+	}
+
 	public HerbariumSheet saveOrUpdate(HerbariumSheet sheet){
 //		saveOrUpdateLocation(sheet);
 		//TODO version problems

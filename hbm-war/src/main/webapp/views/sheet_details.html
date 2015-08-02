@@ -6,24 +6,8 @@
                 <div class="ibox-title">
                     <div class="row">
                         <div class="col-md-4"><h2>Herbar Sheet #{{sheet.number}}</h2></div>
-                        <div class="col-md-offset-2 col-md-4">
-                            <p class="pull-right">
-                                <a ui-sref="index.details.edit({sheet: sheet})" ng-if="$state.current.name === 'index.details.view'">
-                                    <button class="btn btn-primary btn-sm" tooltip-placement="top" tooltip="Edit"><i class="fa fa-edit"></i></button>
-                                </a>
-                                <a  ng-if="$state.current.name === 'index.details.edit'">
-                                    <button class="btn btn-primary btn-sm" ng-click="updateSheet()" tooltip-placement="top" tooltip="Save" ><i class="fa fa-check"></i></button>
-                                </a>
-                                <a ui-sref="index.details.view({sheet: sheet})" ng-if="$state.current.name === 'index.details.edit'">
-                                    <button class="btn btn-primary btn-sm" ng-click="reset()" tooltip-placement="top" tooltip="Cancel"><i class="fa fa-times"></i></button>
-                                </a>
-                                <a ng-if="$state.current.name === 'index.details.edit'">
-                                    <button class="btn btn-primary btn-sm" ng-click="reset()" tooltip-placement="top" tooltip="Reset"><i class="fa fa-undo"></i></button>
-                                </a>
 
-                            </p>
-                        </div>
-                        <div class="col-md-2">
+                        <div class="col-md-offset-6  col-md-2">
                             <form>
                                 <div class="input-group">
                                     <input type="text" class="form-control input-sm col-md-1" placeholder="Herbar Nr." ng-model="search.number">

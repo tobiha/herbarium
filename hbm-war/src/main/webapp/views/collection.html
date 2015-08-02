@@ -76,10 +76,10 @@
                             <td>{{sheet.subSpecies}}</td>
                             <td>{{sheet.family}}</td>
                             <td>{{sheet.collectionDate | date : 'd. MMMM y'}}</td>
-                            <td><a ui-sref="index.details.view({sheet: sheet})">Show Sheet</a></td>
+                            <td><a class="btn-primary btn-xs" ui-sref="index.details.view({sheet: sheet})"><i class="fa fa-pagelines"></i> Show Sheet</a></td>
                         </tr>
                         <tr ng-if="sheet.showDetails" ng-repeat-end="">
-                            <td colspan="5">
+                            <td colspan="6">
                                 <ul class="unstyled">
                                     <li>
                                         <label>Collector:</label>

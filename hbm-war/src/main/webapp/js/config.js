@@ -12,7 +12,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $httpPr
 
     $ocLazyLoadProvider.config({
         // Set to true if you want to see what and when is dynamically loaded
-        debug: true
+        debug: false
     });
 
     $stateProvider
@@ -73,6 +73,22 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $httpPr
         params: {
           sheet: null
         },
+        resolve: {
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              {
+                name: 'datePicker',
+                files: ['css/plugins/datapicker/angular-datapicker.css', 'js/plugins/datapicker/angular-datepicker.js']
+              }
+            ]);
+          }
+        }
+
+      })
+      .state('index.new', {
+        url: "/edit",
+        templateUrl: "views/new_sheet.html",
+        data: {pageTitle: 'Add New Sheet'},
         resolve: {
           loadPlugin: function ($ocLazyLoad) {
             return $ocLazyLoad.load([

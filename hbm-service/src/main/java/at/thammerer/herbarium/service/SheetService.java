@@ -60,6 +60,8 @@ public class SheetService {
 			HerbariumSheet existingSheet = sheetDao.findById(newSheet.getId());
 			existingSheet.updateData(newSheet);
 			newSheet = existingSheet;
+		}else {
+			newSheet.setNumber(sheetDao.getNextHerbariumNumber());
 		}
 		HerbariumSheet persisted = sheetDao.saveOrUpdate(newSheet);
 		LOG.info("new sheet persisted: {}", persisted.toString());

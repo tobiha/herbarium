@@ -173,23 +173,37 @@ function searchCtrl($scope, $state, SearchService) {
 
 };
 
-function detailsController($scope, $stateParams, $state, SearchService, SheetService) {
-	$scope.sheet = $stateParams.sheet;
-	$scope.dirtySheet = angular.copy($scope.sheet);
+function sheetCreationController($scope, $state, SheetService){
+	var fieldWithFocus;
+	$scope.newSheet = {};
+	$scope.submitted = false;
 
-	$scope.findByNr = function(){
-
-		if($scope.search.number != null){
-			loadSheet($scope.search.number);
-		}
+	$scope.focus = function (fieldName) {
+		fieldWithFocus = fieldName;
 	};
 
-	$scope.updateSheet = function(){
+	$scope.blur = function (fieldName) {
+		fieldWithFocus = undefined;
+	};
 
-		SheetService.saveOrUpdateSheet($scope.dirtySheet).then(function(){
-				console.log("updated sheet with id: " + $scope.sheet.id);
-				angular.copy($scope.dirtySheet, $scope.sheet);
-				$state.go("index.details.view", $scope.sheet);
+	$scope.isMessagesVisible = function (fieldName) {
+		return fieldWithFocus === fieldName || $scope.submitted;
+	};
+
+	$scope.saveSheet = function(){
+
+		$scope.submitted = true;
+
+		if ($scope.newSheetForm.$invalid) {
+			return;
+		}
+
+		console.log("Creating new Sheet with scientificName '" + $scope.newSheet.scientificName + "'.");
+
+		SheetService.saveOrUpdateSheet($scope.newSheet).then(function(response){
+				console.log("Sheet saved with id: " + response.id);
+				$scope.sheet = response;
+				$state.go("index.details.view", {'sheet': $scope.sheet});
 			},
 			function (errorMessage) {
 				//TODO show error
@@ -198,10 +212,23 @@ function detailsController($scope, $stateParams, $state, SearchService, SheetSer
 		)
 	};
 
+
 	$scope.reset = function(){
-		angular.copy($scope.sheet, $scope.dirtySheet);
+		$scope.newSheet = {};
 	};
 
+
+};
+
+function detailsController($scope, $stateParams,SearchService) {
+	$scope.sheet = $stateParams.sheet;
+
+	$scope.findByNr = function(){
+
+		if($scope.search.number != null){
+			loadSheet($scope.search.number);
+		}
+	};
 
 	function loadSheet(number) {
 		SearchService.getSheetByNr(number)
@@ -216,6 +243,53 @@ function detailsController($scope, $stateParams, $state, SearchService, SheetSer
 			}
 		);
 	}
+
+}
+
+function updateSheetController($scope, $state, SheetService){
+
+	$scope.dirtySheet = angular.copy($scope.sheet);
+	$scope.submitted = false;
+
+	var fieldWithFocus;
+	console.log("sheet is:", $scope.sheet);
+
+	$scope.focus = function (fieldName) {
+		fieldWithFocus = fieldName;
+	};
+
+	$scope.blur = function (fieldName) {
+		fieldWithFocus = undefined;
+	};
+
+	$scope.isMessagesVisible = function (fieldName) {
+		return fieldWithFocus === fieldName || $scope.submitted;
+	};
+
+
+	$scope.updateSheet = function(){
+
+		$scope.submitted = true;
+
+		if ($scope.updateSheetForm.$invalid) {
+			return;
+		}
+
+		SheetService.saveOrUpdateSheet($scope.dirtySheet).then(function(response){
+				console.log("update on sheet with id: " + response.id);
+				angular.copy(response, $scope.sheet);
+				$state.go("index.details.view", {'sheet': $scope.sheet});
+			},
+			function (errorMessage) {
+				//TODO show error
+				console.log("error occured" + errorMessage);
+			}
+		)
+	};
+
+	$scope.reset = function(){
+		angular.copy($scope.sheet, $scope.dirtySheet);
+	};
 
 }
 
@@ -238,5 +312,7 @@ angular
     .controller('MainCtrl', MainCtrl)
     .controller('loginCtrl', loginCtrl)
 	  .controller('searchCtrl', searchCtrl)
+	  .controller('sheetCreationController', sheetCreationController)
 	  .controller('detailsController', detailsController)
+	  .controller('updateSheetController', updateSheetController)
 		.controller('GoogleMaps', GoogleMaps);

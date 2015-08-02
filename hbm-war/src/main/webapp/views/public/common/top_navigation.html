@@ -12,16 +12,23 @@
                     <a ui-sref="index.main" > Home </a>
 
                 </li>
+                <!--<li class="dropdown" ui-sref-active="active" dropdown>-->
+                    <!--<a class="dropdown-toggle" href dropdown-toggle> Collection <span class="caret"></span></a>-->
+                    <!--<ul role="menu" class="dropdown-menu">-->
+                        <li ui-sref-active="active" >
+                            <a ui-sref="index.collection" > Search </a>
+                        </li>
 
-                <li ui-sref-active="active" ng-show="authenticated">
-                    <a ui-sref="index.collection" > Collection </a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.details.view" > Details </a>
+                        </li>
 
+                <li ui-sref-active="active">
+                    <a ui-sref="index.new" > New </a>
                 </li>
+                    <!--</ul>-->
+                <!--</li>-->
 
-                <li ui-sref-active="active" ng-show="authenticated">
-                    <a ui-sref="index.details.view" > Details </a>
-
-                </li>
 
                 <li ui-sref-active="active" ng-show="authenticated">
                     <a ui-sref="index.map" > Map </a>
