@@ -1,3 +1,9 @@
 .ng-invalid.ng-dirty {
     border-color: #ed5565;
 }
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}

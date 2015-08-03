@@ -1,5 +1,5 @@
 <div class="row border-bottom white-bg">
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav class="navbar navbar-static-top" role="navigation" ng-controller="navigationController">
         <div class="navbar-header">
             <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                 <i class="fa fa-reorder"></i>
@@ -12,22 +12,22 @@
                     <a ui-sref="index.main" > Home </a>
 
                 </li>
-                <!--<li class="dropdown" ui-sref-active="active" dropdown>-->
-                    <!--<a class="dropdown-toggle" href dropdown-toggle> Collection <span class="caret"></span></a>-->
-                    <!--<ul role="menu" class="dropdown-menu">-->
+                <li class="dropdown" ng-class="{active: isCollectionMenuActive()}" dropdown>
+                    <a class="dropdown-toggle" href dropdown-toggle> Collection <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
                         <li ui-sref-active="active" >
                             <a ui-sref="index.collection" > Search </a>
                         </li>
 
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="active" ng-class="{active: isDetailsLinkActive()}">
                             <a ui-sref="index.details.view" > Details </a>
                         </li>
 
-                <li ui-sref-active="active">
-                    <a ui-sref="index.new" > New </a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="index.new" > New Sheet </a>
+                        </li>
+                    </ul>
                 </li>
-                    <!--</ul>-->
-                <!--</li>-->
 
 
                 <li ui-sref-active="active" ng-show="authenticated">

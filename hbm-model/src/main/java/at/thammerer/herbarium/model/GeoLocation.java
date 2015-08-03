@@ -56,4 +56,21 @@ public class GeoLocation extends AbstractEntity{
 	public void setHerbariumSheet(HerbariumSheet herbariumSheet) {
 		this.herbariumSheet = herbariumSheet;
 	}
+
+
+	public void updateData(GeoLocation updated){
+		if(updated == null){
+			this.lat = null;
+			this.lng = null;
+			this.herbariumSheet = null;
+			return;
+		}
+
+		this.lat = updated.getLat();
+		this.lng = updated.getLng();
+	}
+
+	public boolean isEmpty() {
+		return lat == null && lng == null;
+	}
 }

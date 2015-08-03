@@ -6,12 +6,12 @@
     <div class="col-md-offset-2 col-md-4">
         <p class="pull-right">
             <!--<a  ng-if="$state.current.name === 'index.details.edit'">-->
-                <button ng-if="$state.current.name === 'index.details.edit'" class="btn btn-primary btn-sm" tooltip-placement="top" tooltip="Save" ><i class="fa fa-check"></i></button>
+                <button class="btn btn-primary btn-sm" tooltip-placement="top" tooltip="Save" ><i class="fa fa-check"></i></button>
             <!--</a>-->
-            <a ui-sref="index.details.view({sheet: sheet})" ng-if="$state.current.name === 'index.details.edit'">
+            <a ui-sref="index.details.view({sheet: sheet})">
                 <button class="btn btn-primary btn-sm" ng-click="reset()" tooltip-placement="top" tooltip="Cancel"><i class="fa fa-times"></i></button>
             </a>
-            <a ng-if="$state.current.name === 'index.details.edit'">
+            <a>
                 <button class="btn btn-primary btn-sm" ng-click="reset()" tooltip-placement="top" tooltip="Reset"><i class="fa fa-undo"></i></button>
             </a>
 
@@ -20,7 +20,6 @@
 </div>
 
 <div class="row">
-
     <div class="col-md-6">
         <div class="form-group">
             <label>Scientific Name</label>

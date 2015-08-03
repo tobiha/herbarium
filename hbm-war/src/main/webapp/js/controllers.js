@@ -217,7 +217,6 @@ function sheetCreationController($scope, $state, SheetService){
 		$scope.newSheet = {};
 	};
 
-
 };
 
 function detailsController($scope, $stateParams,SearchService) {
@@ -225,7 +224,7 @@ function detailsController($scope, $stateParams,SearchService) {
 
 	$scope.findByNr = function(){
 
-		if($scope.search.number != null){
+		if($scope.search && $scope.search.number){
 			loadSheet($scope.search.number);
 		}
 	};
@@ -306,6 +305,16 @@ function GoogleMaps($scope) {
 	};
 }
 
+function navigationController($state, $scope){
+	$scope.isCollectionMenuActive = function(){
+		return $state.includes('index.details') || $state.includes('index.new') || $state.includes('index.collection');
+	}
+
+	$scope.isDetailsLinkActive = function(){
+		return $state.includes('index.details.edit') || $state.includes('index.details.view');
+	}
+}
+
 
 angular
     .module('inspinia')
@@ -315,4 +324,5 @@ angular
 	  .controller('sheetCreationController', sheetCreationController)
 	  .controller('detailsController', detailsController)
 	  .controller('updateSheetController', updateSheetController)
-		.controller('GoogleMaps', GoogleMaps);
+		.controller('GoogleMaps', GoogleMaps)
+		.controller('navigationController', navigationController);

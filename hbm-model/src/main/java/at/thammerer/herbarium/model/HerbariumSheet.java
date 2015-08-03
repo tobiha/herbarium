@@ -196,13 +196,23 @@ public class HerbariumSheet extends AbstractEntity{
 		this.subSpecies = updated.getSubSpecies();
 		this.collectionDate = updated.getCollectionDate();
 		this.collector = updated.getCollector();
-		this.location = updated.getLocation();
 		this.locationDescription = updated.getLocationDescription();
 		this.altitude = updated.getAltitude();
 		this.exposition = updated.getExposition();
 		this.habitatInformation = updated.getHabitatInformation();
 		this.annotations = updated.getAnnotations();
 		this.storageLocation = updated.getStorageLocation();
+
+
+		if(updated.getLocation() == null || updated.getLocation().isEmpty()){
+			this.location = null;
+		} else {
+			if(this.location == null){
+				this.location = updated.getLocation();
+			}else {
+				this.location.updateData(updated.getLocation());
+			}
+		}
 	}
 
 
