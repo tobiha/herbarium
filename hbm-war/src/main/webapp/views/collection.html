@@ -109,30 +109,31 @@
                             </td>
                         </tr>
                         </tbody>
-                        <tfoot>
-
-                        </tfoot>
                     </table>
                     <div class="row">
-                        <div class="col-lg-3">Showing {{sh.totalDisplayRecords}} (filtered from {{sh.totalRecords}})</div>
-                        <div class="col-lg-9">
+                        <div class="col-md-3">Showing {{fromRecord()}} to {{toRecord()}} of {{sh.totalDisplayRecords}} (filtered from {{sh.totalRecords}})</div>
+                        <div class="col-md-9">
                             <ul class="pagination pull-right">
-                                <li>
-                                    <a ng-enabled="sh.totalPages > 0" class="previous" ng-click="previous()"
-                                       ng-disabled="sh.currentPage == 1"><i class="fa fa-angle-left"/></a>
+                                <li class="previous"  ng-class="{disabled: sh.currentPage == 1}">
+                                    <a  ng-click="first()"><i class="fa fa-angle-double-left"/></a>
+                                </li>
+                                <li ng-class="{disabled: sh.currentPage == 1}">
+                                    <a  ng-click="previous()"><i class="fa fa-angle-left"/></a>
                                 </li>
 
-                                <li ng-repeat="page in pages()">
-                                    <a ng-enabled="sh.totalPages > 0" class="" ng-click="goToPage($index + 1)"
-                                       ng-class="{'active': page == sh.currentPage}">{{page}}</a></li>
+                                <li ng-repeat="page in pages()" ng-class="{'active': page == sh.currentPage}">
+                                    <a ng-click="goToPage(page)">{{page}}</a></li>
 
-                                <li>
-                                    <a ng-enabled="sh.totalPages > 0" ng-disabled="sh.currentPage == sh.totalPages"
-                                       class="next" ng-click="next()">
+                                <li  ng-class="{disabled: sh.currentPage >= sh.totalPages}">
+                                    <a ng-click="next()" >
                                         <i class="fa fa-angle-right"/>
                                     </a>
                                 </li>
-
+                                <li  class="next" ng-class="{disabled: sh.currentPage >= sh.totalPages}">
+                                    <a ng-click="last()" >
+                                        <i class="fa fa-angle-double-right"/>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

@@ -85,12 +85,24 @@ function searchCtrl($scope, $state, SearchService) {
 
 	};
 
-	$scope.pages = function () {
-		return _.range(1, $scope.sh.totalPages + 1);
+	$scope.fromRecord = function(){
+		return Math.min(((($scope.sh.currentPage - 1) * 25)+1),$scope.sh.totalDisplayRecords) ;
 	};
 
+	$scope.toRecord = function(){
+		return Math.min(($scope.sh.currentPage * 25), $scope.sh.totalDisplayRecords);
+	};
+
+	$scope.pages = function () {
+		var minPage = Math.max(1, Math.min($scope.sh.totalPages -6, $scope.sh.currentPage - 3));
+		var maxPage = Math.min($scope.sh.totalPages +1 , Math.max(7, $scope.sh.currentPage + 3) +1);
+		return _.range(minPage, maxPage);
+	};
+
+
+
 	$scope.goToPage = function (pageNumber) {
-		if (pageNumber > 0 && pageNumber <= $scope.sh.totalPages) {
+		if (pageNumber > 0 && pageNumber <= $scope.sh.totalPages && $scope.sh.currentPage != pageNumber ) {
 			$scope.sh.currentPage = pageNumber;
 			loadSheets($scope.herbarFilter, pageNumber, $scope.sh.recordsPerPage);
 		}
@@ -109,6 +121,17 @@ function searchCtrl($scope, $state, SearchService) {
 			loadSheets($scope.herbarFilter, $scope.sh.currentPage, $scope.sh.recordsPerPage);
 		}
 	};
+
+	$scope.first = function () {
+		$scope.sh.currentPage = 1;
+		loadSheets($scope.herbarFilter, $scope.sh.currentPage, $scope.sh.recordsPerPage);
+	};
+
+	$scope.last = function () {
+			$scope.sh.currentPage = $scope.sh.totalPages;
+			loadSheets($scope.herbarFilter, $scope.sh.currentPage, $scope.sh.recordsPerPage);
+	};
+
 
 	$scope.entryFrom = function(){
 		return (sh.currentPage * sh.recordsPerPage) - sh.recordsPerPage +1;
